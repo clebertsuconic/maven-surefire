@@ -38,6 +38,26 @@
              </includes>
            </configuration>
         </plugin>
+       <plugin>
+         <!-- It will install the proper native library required for the current platform. -->
+         <groupId>io.github.check-leak</groupId>
+         <artifactId>checkleak-maven-plugin</artifactId>
+         <version>${check-leak-version}</version>
+         <executions>
+           <execution>
+             <phase>generate-sources</phase>
+             <id>find-native</id>
+             <goals>
+               <goal>install</goal>
+             </goals>
+             <configuration>
+               <target>${project.basedir}/target/lib</target>
+               <!-- I'm selecting a name for the deployed file here. it can be any name and extension you choose as long as it matches the one passed on the JDK argument -->
+               <lib>${check-leak-deploy-name}</lib>
+             </configuration>
+           </execution>
+         </executions>
+       </plugin>
      </plugins>
   </build>
 
